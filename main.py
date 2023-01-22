@@ -173,16 +173,16 @@ def evalute(string):
         s = sign[0]
         
         if(s == '+'):
-            added = digit.pop()
-            digit[len(digit) - 1] = digit[len(digit) - 1] + added
+            added = digit[0]
+            digit[1] = added + digit[1]
         elif(s == '-'):
-            subed = digit.pop()
-            digit[len(digit) - 1] = digit[len(digit) - 1] - subed
-        sign.pop()
-            
+            subed = digit[0]
+            digit[1] = subed - digit[1]
+        sign = sign[1:len(sign)]
+        digit = digit[1:len(digit)]
     ans = []
     ans.append(int(digit[0]))
     ans.append(maxdep)
     return ans 
 
-print(evalute("[{1}+5]*({2}+[{1*(3)}+2])")) #Write the string you want to calculate.
+print(evalute("[3+1*5+7]+5*3-{4+2}")) #Write the string you want to calculate
