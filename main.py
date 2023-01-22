@@ -157,22 +157,32 @@ def evalute(string):
             maxdep = dep
         #print(sign)
         #print(digit)
+    for i in range(0, len(sign)):
+        if(sign and (sign[i] == '*' or sign[i] == '/')):
+            if(sign[i] == '*'):
+                
+                digit[i] = digit[i] * digit[i+1]
+                        
+            else:
+                
+                digit[i] = digit[i] / digit[i+1]
+            digit = digit[0:i] + digit[i+2:len(digit)]
+    #print(digit)
+    #print(sign)
     while(sign):
-        if(sign.pop() == '+'):
+        s = sign[0]
+        
+        if(s == '+'):
             added = digit.pop()
             digit[len(digit) - 1] = digit[len(digit) - 1] + added
-        elif(sign.pop() == '-'):
+        elif(s == '-'):
             subed = digit.pop()
             digit[len(digit) - 1] = digit[len(digit) - 1] - subed
-        elif(sign.pop() == '*'):
-            Muled = digit.pop()
-            digit[len(digit) - 1] = digit[len(digit) - 1] * Muled
-        elif(sign.pop() == '/'):
-            Dived = digit.pop()
-            digit[len(digit) - 1] = digit[len(digit) - 1] / Dived
+        sign.pop()
+            
     ans = []
     ans.append(int(digit[0]))
     ans.append(maxdep)
     return ans 
 
-print(evalute("{3+2)+1")) #Write the string you want to calculate.
+print(evalute("[{1}+5]*({2}+[{1*(3)}+2])")) #Write the string you want to calculate.
