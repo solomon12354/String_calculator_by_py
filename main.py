@@ -14,6 +14,8 @@ def evalute(string):
     sign = []
     digit = []
     
+    string = '(' + string + ')'
+    
     for element in range(0, len(string)):
         if(string[element] == '{'):
             big += 1
